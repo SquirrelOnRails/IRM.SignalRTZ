@@ -1,0 +1,107 @@
+﻿@model IRM.SignalRTZ.Server.Models.IndexViewModel
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    @*<h1 class="display-4">Welcome</h1>
+        <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>*@
+
+    <input type="number" name="delay" value="@Model.Delay" id="delay" />
+    <button class="btn btn-primary" id="submitDelay">Задать период обновления</button>
+
+    <div style="margin-top:20px">
+        <div class="" id="my-hot-table"></div>
+    </div>
+</div>
+
+<link href="~/lib/handsontable/hot.min.css" rel="stylesheet" />
+<script src="~/lib/handsontable/hot.min.js"></script>
+<script src="~/lib/signalr/signalr.min.js"></script>
+
+<script>
+    var _delay = @Model.Delay;
+
+    // SignalR
+    const connection = new signalR.HubConnectionBuilder()
+        .withUrl("/notification")
+        .configureLogging(signalR.LogLevel.Information)
+        .withAutomaticReconnect()
+        .build();
+
+    var startListening = async () => {
+        try {
+            await connection.start();
+            console.log("SignalR Connected.");
+        } catch (err) {
+            console.log(err);
+            setTimeout(startListening, 5000);
+        }
+    };
+
+    connection.onclose(startListening);
+    connection.on('ReceiveReports', (reportList) => {
+        renderTable(reportList);
+    });
+    connection.on('DelayUpdated', (seconds) => {
+        _delay = seconds;
+    });
+
+    var getCurrentRecords = async () => {
+        try {
+            await connection.invoke("GetCurrentRecords");
+        } catch (err) {
+            console.error(err);
+        }
+    };
+
+    var changeDelay = async (seconds) => {
+        try {
+            await connection.invoke("UpdateDelay", parseInt(seconds));
+        } catch (err) {
+            console.error(err);
+        }
+    };
+
+
+    // hot
+    var renderTable = function (data) {
+        var settings = {
+            data: data,
+            colHeaders: true,
+            rowHeaders: true,
+            colHeaders: ['IP', 'RAM TOTAL', 'RAM FREE', 'DISK TOTAL', 'DISK FREE', 'CPU USAGE %', 'LAST UPDATE'],
+            //colWidths: [null, null, null, null, null, null, null],
+            filters: false,
+            dropdownMenu: false,
+            licenseKey: 'non-commercial-and-evaluation'
+        }
+
+        var container = document.getElementById('my-hot-table');
+        $(container).empty();
+        var hot = new Handsontable(container, settings);
+    };
+
+
+    // page logic
+    $('#submitDelay').click(e => {
+        var seconds = $('#delay').val();
+        changeDelay(seconds);
+    });
+
+    function refreshData() {
+        if (connection.state === signalR.HubConnectionState.Connected) {
+            getCurrentRecords();
+            setTimeout(refreshData, _delay * 1000); // TODO: вернуть
+        } else {
+            setTimeout(refreshData, 2000); // TODO: вернуть
+        }
+    }
+
+    $('document').ready(() => {
+        startListening();
+        refreshData();
+    });
+
+</script>

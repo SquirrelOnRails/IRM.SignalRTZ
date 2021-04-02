@@ -1,0 +1,43 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30907.101
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IRM.SignalRTZ.Server", "IRM.SignalRTZ\IRM.SignalRTZ.Server.csproj", "{1BD89132-BB05-4677-B22E-8538318850C9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IRM.SignalRTZ.Client", "IRM.SignalRTZ.Client\IRM.SignalRTZ.Client.csproj", "{8737BDFF-9E7D-4143-8457-8D79C904E4A1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IRM.SignalRTZ.Common", "..\IRM.SignalRTZ.Common\IRM.SignalRTZ.Common\IRM.SignalRTZ.Common.csproj", "{9D188744-3FD9-41F0-A4D1-B9DC07CEFD10}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IRM.SignalRTZ.DataAccess", "..\IRM.SignalRTZ.DataAccess\IRM.SignalRTZ.DataAccess\IRM.SignalRTZ.DataAccess.csproj", "{C24DA0D0-6DCD-47FA-8131-10E604098BA0}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1BD89132-BB05-4677-B22E-8538318850C9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1BD89132-BB05-4677-B22E-8538318850C9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1BD89132-BB05-4677-B22E-8538318850C9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1BD89132-BB05-4677-B22E-8538318850C9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8737BDFF-9E7D-4143-8457-8D79C904E4A1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8737BDFF-9E7D-4143-8457-8D79C904E4A1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8737BDFF-9E7D-4143-8457-8D79C904E4A1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8737BDFF-9E7D-4143-8457-8D79C904E4A1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9D188744-3FD9-41F0-A4D1-B9DC07CEFD10}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9D188744-3FD9-41F0-A4D1-B9DC07CEFD10}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9D188744-3FD9-41F0-A4D1-B9DC07CEFD10}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9D188744-3FD9-41F0-A4D1-B9DC07CEFD10}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C24DA0D0-6DCD-47FA-8131-10E604098BA0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C24DA0D0-6DCD-47FA-8131-10E604098BA0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C24DA0D0-6DCD-47FA-8131-10E604098BA0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C24DA0D0-6DCD-47FA-8131-10E604098BA0}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {04C82AC0-E2B3-4663-A0F2-045A0F0E5544}
+	EndGlobalSection
+EndGlobal
